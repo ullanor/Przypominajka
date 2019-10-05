@@ -1,0 +1,15 @@
+﻿<Window x:Class="Przypominek.sortingProgressBarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Przypominek"
+        mc:Ignorable="d"
+        Title="sortingProgressBarWindow" Height="214.5" Width="1256" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <ProgressBar x:Name="TestProgressBar" HorizontalAlignment="Left" Height="80" Margin="10,10,0,0" VerticalAlignment="Top" Width="1236"/>
+        <TextBlock x:Name="ProgressTextBlock" HorizontalAlignment="Left" Margin="10,95,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="49" Width="1236" FontSize="36" FontWeight="Bold"/>
+        <Button x:Name="zakonczButton" Content="OK" HorizontalAlignment="Left" Margin="388,149,0,0" VerticalAlignment="Top" Width="484" Click="zakonczButton_Click" Height="55" FontSize="24" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+
+    </Grid>
+</Window>

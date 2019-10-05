@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Przypominek", "Przypominek\Przypominek.csproj", "{48421C49-94E0-4376-80DF-CCE148555130}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PrzyPominajkaIISetup", "PrzyPominajkaSetup\PrzyPominajkaSetup.vdproj", "{D18D0535-1C5E-464B-8F06-A9327C7C4732}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48421C49-94E0-4376-80DF-CCE148555130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48421C49-94E0-4376-80DF-CCE148555130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48421C49-94E0-4376-80DF-CCE148555130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48421C49-94E0-4376-80DF-CCE148555130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18D0535-1C5E-464B-8F06-A9327C7C4732}.Debug|Any CPU.ActiveCfg = Debug
+		{D18D0535-1C5E-464B-8F06-A9327C7C4732}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A716035-5917-4751-8667-8CF1F5661859}
+	EndGlobalSection
+EndGlobal

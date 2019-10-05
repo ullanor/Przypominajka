@@ -1,0 +1,171 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Przypominek"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Name="okieneczko" x:Class="Przypominek.MainWindow"
+        mc:Ignorable="d"
+        Title="Przypominajka"  Height="768" Width="1169.5" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <Style x:Key="styleCalendar" TargetType="{x:Type Calendar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <!-- Wrapping in ViewBox will enlarge calendar of that size.-->
+                        <Viewbox Height="200"
+                         Width="200">
+                            <CalendarItem x:Name="PART_CalendarItem"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"/>
+                        </Viewbox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="0,0,-8,-2" >
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.3,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFA0C6D1" Offset="0"/>
+                <GradientStop Color="#FFFFFFC3" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+
+        <Button x:Name="newEventButton" Content="Dodaj nowe wydarzenie" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="292" Click="Button_Click" Height="50" RenderTransformOrigin="0.504,-0.458" FontSize="22" Focusable="False"/>
+        <Image x:Name="MIGACZ" HorizontalAlignment="Left" Height="164" Margin="1038,26,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.131,0.374" Source="Resources/lamp.jpg"/>
+        <Button x:Name="DeleteOldButton" Content="Usuń Stare" HorizontalAlignment="Left" Margin="443,124,0,0" VerticalAlignment="Top" Width="145" Click="DeleteOldButton_Click" Height="66" FontSize="22" Focusable="False">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF7E854" Offset="0"/>
+                    <GradientStop Color="#FFCDBC13" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="AutostartButton" Content="Dodaj/Usuń Autostart" HorizontalAlignment="Left" Margin="307,10,0,0" VerticalAlignment="Top" Width="271" Click="AutostartButton_Click" Height="50" FontSize="22" Focusable="False"/>
+        <Button x:Name="HandDeleteButton" Content="Usuń Zaznaczone" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="292" Click="HandDeleteButton_Click" Height="50" FontSize="22" Focusable="False"/>
+        <Button x:Name="exiter" Content="Exit" HorizontalAlignment="Left" Margin="893,10,0,0" VerticalAlignment="Top" Width="128" FontSize="48" Height="105" Click="exiter_Click" Background="#FFA00202" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic" Focusable="False"/>
+        <Image HorizontalAlignment="Left" Height="105" Margin="750,10,0,0" VerticalAlignment="Top" Width="104" Source="Resources/BlueDefenderF.png" RenderTransformOrigin="0.4,0.536"/>
+        <Button x:Name="CONTENTCHANGER" Content="Pokaż wszystkie wydarzenia" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="428" RenderTransformOrigin="0.093,0.636" Height="66" FontSize="22" Click="CONTENTCHANGER_Click" Foreground="#FF1525C3" Focusable="False"/>
+
+        <TextBlock x:Name="showAmount" HorizontalAlignment="Left" Margin="593,124,0,0" TextWrapping="Wrap" Text="Brak wydarzeń" VerticalAlignment="Top" Height="66" Width="428" FontSize="22" Foreground="#FFCF0202" FontWeight="Bold" Background="#FFFFFFB8"/>
+        <TextBlock x:Name="iloscWydarzenBlock" HorizontalAlignment="Left" Margin="632,10,0,0" TextWrapping="Wrap" Text="404" VerticalAlignment="Top" Height="50" Width="69" FontSize="36" FontWeight="Bold"/>
+        <Button x:Name="sortownikButton" Content="Posortuj" HorizontalAlignment="Left" Margin="593,65,0,0" VerticalAlignment="Top" Width="142" Height="50" FontSize="22" Focusable="False" Click="sortownikButton_Click" Foreground="Black" BorderBrush="#FFFFF40C" Background="#FF35C742" IsCancel="True"/>
+        <Button x:Name="odswiezButtonRare" Content="Edytuj Zaznaczone" HorizontalAlignment="Left" Margin="307,65,0,0" VerticalAlignment="Top" Width="271" Height="50" Focusable="False" FontSize="22" Click="odswiezButtonRare_Click" RenderTransformOrigin="0.2,-0.303"/>
+        <Border Panel.ZIndex ="-1" BorderBrush="#FF335E6A" BorderThickness="2" HorizontalAlignment="Left" Height="196" Margin="4,3,0,0" VerticalAlignment="Top" Width="1145"/>
+
+
+        <ScrollViewer Panel.ZIndex ="-1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,204,0,0" Width="1136" Height="409">
+            <TextBlock x:Name="SHOWEVENT" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Brak Wydarzeń" VerticalAlignment="Top" Height="auto" Width="auto" FontSize="22" FontWeight="Bold" Foreground="#FFA40101"/>
+        </ScrollViewer>
+
+        <ListView Panel.ZIndex ="-1" Margin="4,204,0,0" x:Name="lvUsers" Background="{x:Null}" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                  Height="409" Foreground="Black" Width="1142">
+            <ListView.View>
+                <GridView x:Name="gridder">
+                    <GridViewColumn x:Name="nColumn" Header="Nazwa Wydarzenia" Width="920" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Deadline" Width="105" DisplayMemberBinding="{Binding Left}" />
+                    <!--<GridViewColumn Header="Typ" Width="100" DisplayMemberBinding="{Binding Type}" />-->
+                    <GridViewColumn Header="Zaznacz">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5, 0" IsChecked="{Binding Zaznacz}" Width="30" Height="30">
+                                    <CheckBox.Template>
+                                        <ControlTemplate   
+                 TargetType="{x:Type CheckBox}">
+                                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            Background="{TemplateBinding Background}">
+                                                <Grid>
+                                                    <!-- ContentPresenter displays content of CheckBox -->
+                                                    <ContentPresenter 
+                Content="{TemplateBinding Content}" 
+                ContentTemplate="{TemplateBinding ContentTemplate}" 
+                Margin="{TemplateBinding Padding}" 
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                    <!-- This Border displays a semi-transparent red X -->
+                                                    <Border>
+                                                        <Border.Background>
+                                                            <VisualBrush Opacity="0.5">
+                                                                <VisualBrush.Visual>
+                                                                    <Path x:Name="path" 
+                                  Data="M 0 0 L 10 10 M 10 0 L 0 10" 
+                                  Stroke="White"  
+                                  StrokeStartLineCap="Round" 
+                                  StrokeEndLineCap="Round" 
+                                  StrokeLineJoin="Round" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Border.Background>
+                                                    </Border>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="path" 
+                Property="Data" 
+                Value="M 0 5 L 3 10 10 0" />
+                                                    <Setter TargetName="path" 
+                Property="Stroke" 
+                Value="Red" />
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="{x:Null}">
+                                                    <Setter TargetName="path" 
+                Property="Data" 
+                Value="M 0 2.5 A 5 2.5 0 1 1 5 5                          L 5 8 M 5 10 L 5 10" />
+                                                    <Setter TargetName="path" 
+                Property="Stroke" 
+                Value="Blue" />
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Foreground"  
+                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </CheckBox.Template>
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <GroupBox HorizontalAlignment="Left" Height="106" Margin="4,618,0,0" VerticalAlignment="Top" Width="1145" BorderBrush="#FF727272">
+            <Grid>
+                <Viewbox HorizontalAlignment="Right" Width="1272" Margin="-233,-176,94,-118">
+                    <DatePicker x:Name="wybranaData" CalendarStyle="{StaticResource styleCalendar}" HorizontalAlignment="Left" Margin="776,10,0,0" VerticalAlignment="Top" Width="128" Height="26" FontSize="14" FontWeight="Bold" Focusable="False"/>
+                </Viewbox>
+                <TextBox x:Name="nameOfEvent" HorizontalAlignment="Left" Height="36" Margin="10,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="761" FontSize="22" Text="Nazwa Wydarzenia" FontWeight="Bold" GotFocus="nazwaNowaFocus"/>
+                <CheckBox x:Name="cykliczne" Content="Wydarzenie Cykliczne (Coroczne)" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Click="coroczneClicked"/>
+                <CheckBox x:Name="coMiesieczne" Content="Wydarzenie Cykliczne (Comiesięczne)" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" Click="comiesieczneClicked"/>
+                <Button x:Name="confirmButton" Content="Zatwierdź wydarzenie" HorizontalAlignment="Left" Margin="508,56,0,0" VerticalAlignment="Top" Width="263" FontSize="22" FontWeight="Bold" Click="confirmButton_Click" Focusable="False">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FF80E638" Offset="0"/>
+                            <GradientStop Color="#FF458B14" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="cancelButton" Content="Anuluj wydarzenie" HorizontalAlignment="Left" Margin="859,56,0,0" VerticalAlignment="Top" Width="264" FontSize="22" FontWeight="Bold" Click="cancelButton_Click" Focusable="False">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFFB3333" Offset="0"/>
+                            <GradientStop Color="#FF7C1414" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+
+
+
+</Window>
